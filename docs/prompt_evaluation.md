@@ -66,7 +66,7 @@ Sections 1–3 (persona, gate, framework) are stable across use cases. Sections 
 Before the qualification gate, a short instruction to assess whether the uploaded file is readable and whether it appears to be a single paper would catch file processing failures earlier and reduce wasted processing on malformed inputs. This is partially addressed in Constraint 6 but not as a proactive check.
 
 **Parameterize the connectivity segmentation framework** *(implemented in v1.0 parameterized version)*
-The four connectivity segments and all other organization-specific values — team name, priority geographies, sectors, funder, date range, and rigor indexes — are now defined in a configuration block at the top of the prompt. The prompt body references these as `{{VARIABLE_NAME}}` placeholders. A user adapting the prompt changes only the config block. Two output fields were also neutralized: `Gates Country` became `Priority Geography Match` and `Gates Funded` became `Funder Match`, both driven by config values.
+The four connectivity segments and all other organization-specific values — team name, priority geographies, sectors, funder, date range, and rigor indexes — are now defined in a configuration block at the top of the prompt. The prompt body references these as `{{VARIABLE_NAME}}` placeholders. A user adapting the prompt changes only the config block.
 
 **Add a version-controlled changelog**
 The prompt is at v1.0 with a revision date but no changelog. Tracking what changed between versions — and why — would support quality review and make it easier to attribute output differences to prompt changes versus model behavior.
