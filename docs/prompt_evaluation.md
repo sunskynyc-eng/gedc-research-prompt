@@ -3,13 +3,13 @@
 ## Strengths
 
 **Explicit priority hierarchy**
-The opening block defines a precedence order across all seven sections. This reduces ambiguous behavior when instructions conflict — a failure mode in long prompts where the model may otherwise resolve conflicts by recency or salience rather than intent.
+The opening block defines a precedence order across all seven sections. This reduces ambiguous behavior when instructions conflict. In long prompts, models may otherwise resolve conflicts by recency or salience rather than intent.
 
 **Hard stop at qualification gate**
 Section 2 halts analysis entirely if a paper fails screening. This prevents the model from producing partial or out-of-scope output that looks valid but is not. Without the halt instruction, models tend to proceed and produce something plausible but incorrect.
 
 **Decoupled rigor scoring**
-Section 4 separates Tier (publication source) from Confidence (methodological quality). This is methodologically sound — a peer-reviewed paper can have weak methodology, and a gray-literature report can be rigorous. Conflating the two produces unreliable quality assessments.
+Section 4 separates Tier (publication source) from Confidence (methodological quality). This is methodologically sound. A peer-reviewed paper can have weak methodology, and a gray-literature report can be rigorous. Conflating the two produces unreliable quality assessments.
 
 **Named failure modes in self-checking**
 Section 7 targets specific, named failure modes rather than asking for a general review. Check 8 (anti-sycophancy) and Check 9 (hallucination audit) target two significant error types in research evaluation tasks: confirming what should be good versus what the evidence actually supports, and generating plausible-sounding details not present in the source.
@@ -55,21 +55,24 @@ If the uploaded file contains more than one paper (e.g., a report with multiple 
 **Token cost scales with paper length**
 The prompt itself is approximately 5,300 tokens. A 25-page paper adds approximately 16,700 tokens. At high volumes, this is a meaningful cost factor, and the self-checking protocol (Section 7) adds significant output tokens per run. See the technical breakdown for a full cost estimate.
 
+**Prompt is optimized for Claude**
+The priority hierarchy, constraint structure, and self-checking protocol are designed around Claude's instruction-following behavior. The logic order, particularly the precedence rules in the opening block and the hard stop in Section 2, may not translate directly to other models. Different models handle conflicting instructions and halt conditions in different ways. Using this prompt with a different model without adjusting the instruction order and constraint framing is likely to produce inconsistent results.
+
 ---
 
 ## Optimization Opportunities
 
 **Modularize by use case**
-Sections 1–3 (persona, gate, framework) are stable across use cases. Sections 4–5 (scoring guide and output format) are more context-specific. Splitting the prompt into a stable core and swappable output modules would reduce maintenance overhead when the output format needs to change.
+Sections 1-3 (persona, gate, framework) are stable across use cases. Sections 4-5 (scoring guide and output format) are more context-specific. Splitting the prompt into a stable core and swappable output modules would reduce maintenance overhead when the output format needs to change.
 
 **Add a pre-check for file type and length**
 Before the qualification gate, a short instruction to assess whether the uploaded file is readable and whether it appears to be a single paper would catch file processing failures earlier and reduce wasted processing on malformed inputs. This is partially addressed in Constraint 6 but not as a proactive check.
 
 **Parameterize the connectivity segmentation framework** *(implemented in v1.0 parameterized version)*
-The four connectivity segments and all other organization-specific values — team name, priority geographies, sectors, funder, date range, and rigor indexes — are now defined in a configuration block at the top of the prompt. The prompt body references these as `{{VARIABLE_NAME}}` placeholders. A user adapting the prompt changes only the config block.
+The four connectivity segments and all other organization-specific values, including team name, priority geographies, sectors, funder, date range, and rigor indexes, are now defined in a configuration block at the top of the prompt. The prompt body references these as `{{VARIABLE_NAME}}` placeholders. A user adapting the prompt changes only the config block.
 
 **Add a version-controlled changelog**
-The prompt is at v1.0 with a revision date but no changelog. Tracking what changed between versions — and why — would support quality review and make it easier to attribute output differences to prompt changes versus model behavior.
+The prompt is at v1.0 with a revision date but no changelog. Tracking what changed between versions and why would support quality review and make it easier to attribute output differences to prompt changes versus model behavior.
 
 **Reduce self-check log verbosity for high-volume runs**
 The self-checking protocol is thorough but produces lengthy logs. For high-volume screening, a condensed log format (pass/fail per check with a flag for any corrections made) would reduce output length and cost while preserving auditability. The full protocol could be retained for spot-check runs.
