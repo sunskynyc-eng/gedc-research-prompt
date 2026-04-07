@@ -204,7 +204,7 @@ The Batch API processes requests asynchronously (within 24 hours) at a 50% disco
 
 ### Notes
 
-- Paper length is the primary cost driver. A 10-page paper saves approximately 10,000 input tokens (~$0.05) compared to a 25-page paper. A 40-page paper adds approximately 10,000 tokens (~$0.05).
+- Research paper length is the primary cost driver.
 - The self-check log (Section 7) accounts for approximately 53% of output tokens. If cost becomes a consideration at scale, a condensed log mode would be the highest-impact optimization.
 - Output tokens cost 5x more per token than input tokens. Verbose field values in the output document have a greater cost impact than prompt length.
 - Prompt caching can reduce input costs for the prompt portion (~5,300 tokens) by 90% on repeated runs, saving approximately $0.02 per run. At high volume this compounds but is not the primary cost lever given the paper dominates input tokens.
