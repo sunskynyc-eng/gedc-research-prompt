@@ -39,6 +39,6 @@ prompt/
   gedc_research_analysis_v1.0.txt                Original prompt
   gedc_research_analysis_v1.0_parameterized.txt  Parameterized version with config block
 docs/
-  technical_breakdown.md                         Prompt architecture and token usage
-  evaluation.md                                  Strengths, limitations, and optimization notes
+  prompt_technical_breakdown.md                         Prompt architecture and token usage
+  prompt_evaluation.md                                  Strengths, limitations, and optimization notes
 ```
