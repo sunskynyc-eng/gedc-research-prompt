@@ -1,6 +1,5 @@
 GEDC Research Analysis Prompt
 Gender Equality & Digital Connectivity (GEDC) Team
-Version 1.0 | Last revised: March 2026
 
 ---
 

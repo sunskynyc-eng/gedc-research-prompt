@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document describes the architecture of the GEDC Research Analysis Prompt (v1.0). It identifies each logical component, names the prompt engineering construct it represents, and estimates its token footprint.
+This document describes the architecture of the GEDC Research Analysis Prompt. It identifies each logical component, names the prompt engineering construct it represents, and estimates its token footprint.
 
 ---
 
@@ -10,9 +10,9 @@ This document describes the architecture of the GEDC Research Analysis Prompt (v
 
 Two versions of the prompt are documented here.
 
-**gedc_research_analysis_v1.0.txt** — the original version. All organization-specific values (team name, geographies, sectors, funder, date range, connectivity segments) are hardcoded directly into the prompt body. The prompt is composed of seven sections.
+**gedc_research_analysis.txt** — the original version. All organization-specific values (team name, geographies, sectors, funder, date range, connectivity segments) are hardcoded directly into the prompt body. The prompt is composed of seven sections.
 
-**gedc_research_analysis_v1.0_parameterized.txt** — the generalized version. A configuration block sits above the same seven sections. All organization-specific values are defined once in the config block and referenced throughout the prompt body using `{{VARIABLE_NAME}}` syntax. The logic in the seven sections is identical to the original.
+**gedc_research_analysis_parameterized.txt** — the generalized version. A configuration block sits above the same seven sections. All organization-specific values are defined once in the config block and referenced throughout the prompt body using `{{VARIABLE_NAME}}` syntax. The logic in the seven sections is identical to the original.
 
 The section descriptions below apply to both versions. The configuration block section applies to the parameterized version only.
 
@@ -132,7 +132,7 @@ Self-checking protocols work by making implicit evaluation criteria explicit and
 
 ## Token Usage by Section
 
-### Original version (gedc_research_analysis_v1.0.txt)
+### Original version (gedc_research_analysis.txt)
 
 | Section | Description | Approx. tokens |
 |---|---|---|
@@ -146,7 +146,7 @@ Self-checking protocols work by making implicit evaluation criteria explicit and
 | Section 7 | Self-checking protocol | 780 |
 | **Total** | | **~4,980** |
 
-### Parameterized version (gedc_research_analysis_v1.0_parameterized.txt)
+### Parameterized version (gedc_research_analysis_parameterized.txt)
 
 | Section | Description | Approx. tokens |
 |---|---|---|

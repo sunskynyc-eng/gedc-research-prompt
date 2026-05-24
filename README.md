@@ -25,19 +25,17 @@ A formatted Word document (.docx) structured as a two-column table, organized in
 
 ## Prompt versions
 
-v1.0 — Last revised April 2026
-
 Two versions are available:
 
-- `gedc_research_analysis_v1.0.txt` — original version with all values hardcoded
-- `gedc_research_analysis_v1.0_parameterized.txt` — generalized version with a configuration block at the top. All organization-specific values (team name, priority geographies, sectors, funder, date range, connectivity segments) are defined once in the config block and referenced throughout the prompt body. Use this version to adapt the prompt to a different team, organization, or thematic scope without modifying the logic.
+- `gedc_research_analysis.txt` — original version with all values hardcoded
+- `gedc_research_analysis_parameterized.txt` — generalized version with a configuration block at the top. All organization-specific values (team name, priority geographies, sectors, funder, date range, connectivity segments) are defined once in the config block and referenced throughout the prompt body. Use this version to adapt the prompt to a different team, organization, or thematic scope without modifying the logic.
 
 ## Contents
 
 ```
 prompt/
-  gedc_research_analysis_v1.0.txt                Original prompt
-  gedc_research_analysis_v1.0_parameterized.txt  Parameterized version with config block
+  gedc_research_analysis.txt                Original prompt
+  gedc_research_analysis_parameterized.txt  Parameterized version with config block
 docs/
   prompt_technical_breakdown.md                         Prompt architecture and token usage
   prompt_evaluation.md                                  Strengths, limitations, and optimization notes

@@ -1,5 +1,4 @@
 GEDC Research Analysis Prompt
-Version 1.0 | Last revised: March 2026
 
 ==============================================================
 CONFIGURATION BLOCK
