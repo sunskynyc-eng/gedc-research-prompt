@@ -1,4 +1,4 @@
-# Evaluation — GEDC Research Analysis Prompt v1.0
+# Evaluation — GEDC Research Analysis Prompt
 
 ## Strengths
 
@@ -24,8 +24,8 @@ Constraint 4 in Section 6 explicitly prohibits four specific scope creep pattern
 
 ## Best Use Cases
 
-**High volume paper screening**
-The qualification gate and structured output make this prompt well-suited to screening large batches of papers against defined criteria. The hard stop on non-qualifying papers keeps processing time and cost proportionate to paper relevance.
+**High volume paper screening (with batch tooling)**
+The qualification gate and structured output make this prompt well-suited to screening large batches of papers against defined criteria, and the hard stop on non-qualifying papers keeps processing time and cost proportionate to paper relevance. The prompt itself runs one paper per session; using it at volume requires a separate runner that invokes the prompt against each input. That runner is not included in this repo.
 
 **Multi-analyst consistency**
 The rubric-based scoring in Sections 4 and 5 reduces analyst-to-analyst variation. When multiple people run the same prompt on different papers, the classification criteria are explicit enough to produce comparable outputs without calibration sessions.
@@ -33,8 +33,8 @@ The rubric-based scoring in Sections 4 and 5 reduces analyst-to-analyst variatio
 **Audit-ready research synthesis**
 The self-check log is appended to each output document and traces the reasoning behind tier assignments, evidence strength ratings, and scope decisions. This makes individual outputs auditable and supports quality review without requiring access to the original papers.
 
-**Onboarding new team members to a research framework**
-The connectivity segmentation framework, tiering system, and field definitions in this prompt encode institutional knowledge that would otherwise require significant training time to transfer. Running new analysts through the prompt output is a faster path to shared vocabulary.
+**Reference framework for onboarding**
+The prompt itself documents the team's connectivity segmentation framework, tiering system, default value conventions, and field definitions in one place. As a written artifact it can be referenced during onboarding to communicate institutional standards. The prompt's *outputs* do not teach the framework — but the prompt as a document does.
 
 ---
 
@@ -68,11 +68,11 @@ Sections 1-3 (persona, gate, framework) are stable across use cases. Sections 4-
 **Add a pre-check for file type and length**
 Before the qualification gate, a short instruction to assess whether the uploaded file is readable and whether it appears to be a single paper would catch file processing failures earlier and reduce wasted processing on malformed inputs. This is partially addressed in Constraint 6 but not as a proactive check.
 
-**Parameterize the connectivity segmentation framework** *(implemented in v1.0 parameterized version)*
+**Parameterize the connectivity segmentation framework** *(implemented in parameterized version)*
 The four connectivity segments and all other organization-specific values, including team name, priority geographies, sectors, funder, date range, and rigor indexes, are now defined in a configuration block at the top of the prompt. The prompt body references these as `{{VARIABLE_NAME}}` placeholders. A user adapting the prompt changes only the config block.
 
-**Add a version-controlled changelog**
-The prompt is at v1.0 with a revision date but no changelog. Tracking what changed between versions and why would support quality review and make it easier to attribute output differences to prompt changes versus model behavior.
+**Add a per-version changelog**
+Version history is tracked via git tags, which preserve the prompt state at each release but do not describe what changed between versions or why. A `CHANGELOG.md` with per-version entries would make change attribution easier — particularly when an output difference needs to be traced to a prompt change versus model behavior.
 
 **Reduce self-check log verbosity for high-volume runs**
 The self-checking protocol is thorough but produces lengthy logs. For high-volume screening, a condensed log format (pass/fail per check with a flag for any corrections made) would reduce output length and cost while preserving auditability. The full protocol could be retained for spot-check runs.

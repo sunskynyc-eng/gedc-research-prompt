@@ -2,7 +2,8 @@
 
 ## Overview
 
-This document describes the architecture of the GEDC Research Analysis Prompt. It identifies each logical component, names the prompt engineering construct it represents, and estimates its token footprint.
+This document describes the architecture of the GEDC Research Analysis Prompt. 
+It identifies each logical component, names the prompt engineering construct it represents, and estimates its token footprint.
 
 ---
 
@@ -10,9 +11,14 @@ This document describes the architecture of the GEDC Research Analysis Prompt. I
 
 Two versions of the prompt are documented here.
 
-**gedc_research_analysis.txt** — the original version. All organization-specific values (team name, geographies, sectors, funder, date range, connectivity segments) are hardcoded directly into the prompt body. The prompt is composed of seven sections.
+**gedc_research_analysis.txt** — the original version. 
+All organization-specific values (team name, geographies, sectors, funder, date range, connectivity segments) are hardcoded directly into the prompt body. 
+The prompt is composed of seven sections.
 
-**gedc_research_analysis_parameterized.txt** — the generalized version. A configuration block sits above the same seven sections. All organization-specific values are defined once in the config block and referenced throughout the prompt body using `{{VARIABLE_NAME}}` syntax. The logic in the seven sections is identical to the original.
+**gedc_research_analysis_parameterized.txt** — the generalized version. 
+A configuration block sits above the same seven sections. 
+All organization-specific values are defined once in the config block and referenced throughout the prompt body using `{{VARIABLE_NAME}}` syntax. 
+The logic in the seven sections is identical to the original.
 
 The section descriptions below apply to both versions. The configuration block section applies to the parameterized version only.
 
@@ -23,7 +29,9 @@ The section descriptions below apply to both versions. The configuration block s
 
 **Construct:** Parameterization / variable substitution
 
-The configuration block sits at the top of the prompt and defines all organization-specific values as named variables. These variables are referenced throughout the prompt body using `{{VARIABLE_NAME}}` syntax. A user adapting the prompt to a different context changes only the config block — the logic in Sections 1–7 remains unchanged.
+The configuration block sits at the top of the prompt and defines all organization-specific values as named variables. 
+These variables are referenced throughout the prompt body using `{{VARIABLE_NAME}}` syntax. 
+A user adapting the prompt to a different context changes only the config block — the logic in Sections 1–7 remains unchanged.
 
 Parameters defined in the config block:
 
@@ -51,9 +59,12 @@ Parameterization separates configuration from logic. It reduces the risk of part
 
 **Construct:** Role prompting / persona injection
 
-The model is assigned a specific professional identity with a defined scope of expertise, audience, and analytical lens. This shapes the register, vocabulary, and judgment style of all outputs without requiring explicit instructions in every section.
+The model is assigned a specific professional identity with a defined scope of expertise, audience, and analytical lens. 
+This shapes the register, vocabulary, and judgment style of all outputs without requiring explicit instructions in every section.
 
-Persona prompts work by activating relevant knowledge clusters and behavioral patterns. The more specific the persona — including institutional context, stakeholder audiences, and named analytical frameworks — the more consistent the output register. This persona includes all three layers: expertise domain, institutional context, and output audience.
+Persona prompts work by activating relevant knowledge clusters and behavioral patterns. 
+The more specific the persona — including institutional context, stakeholder audiences, and named analytical frameworks — the more consistent the output register. 
+This persona includes all three layers: expertise domain, institutional context, and output audience.
 
 **Approximate tokens:** 340
 
@@ -168,9 +179,9 @@ Note: Token counts are estimated using character and word-count approximations (
 
 ## Cost Per Run
 
-*Pricing as of April 2026. Token estimates based on the parameterized version (~5,300 prompt tokens). The original version would cost approximately $0.02 less per run.*
+*Pricing as of May 2026. Token estimates based on the parameterized version (~5,300 prompt tokens). The original version would cost approximately $0.02 less per run.*
 
-**Model:** Claude Opus 4.6 — the recommended model for quality and reliability.
+**Model:** Claude Opus 4.7 — the recommended model for quality and reliability.
 **Pricing:** $5.00 per million input tokens · $25.00 per million output tokens.
 
 ### Token breakdown per run (25-page paper)
