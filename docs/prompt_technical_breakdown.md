@@ -34,6 +34,7 @@ Parameters defined in the config block:
 | `DOCUMENT_RECORD_NAME` | Label for the output document header |
 | `PUBLICATION_DATE_START` | Earliest qualifying publication year |
 | `PUBLICATION_DATE_END` | Latest qualifying publication year |
+| `PUBLICATION_DATE_FLAG_BEFORE` | Year before which papers are flagged as older |
 | `PRIORITY_GEOGRAPHIES` | List of priority countries or regions for the domain criterion and output field |
 | `PRIORITY_SECTORS` | List of priority sectors for the domain criterion |
 | `FUNDER_TO_FLAG` | Organization name used in the Funder Match output field |
